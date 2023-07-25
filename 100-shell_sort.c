@@ -1,4 +1,4 @@
-[200~#include "sort.h"
+#include "sort.h"
 
 /**
  *  * shell_sort - Sorts an array of integers using the Shell Sort algorithm.
