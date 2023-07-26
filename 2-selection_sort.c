@@ -1,40 +1,33 @@
 #include "sort.h"
 
 /**
- * shell_sort - Sorts an array of integers using the Shell Sort algorithm.
+ * selection_sort - sorts an array of integers in ascending order
+ * using the Selection sort algorithm
  *
- * @array: Pointer to the array to be sorted.
- * @size: Number of elements in the array.
+ * @array: The array to be sorted
+ * @size: The size of the array
  */
-void shell_sort(int *array, size_t size)
+void selection_sort(int *array, size_t size)
 {
-    int temp;
-    size_t i, j;
-    size_t interval = 1;
+	size_t i, j, minval;
+	int temp;
 
-    while (interval <= size / 3)
-    {
-        interval = interval * 3 + 1;
-    }
+	for (i = 0; i < size - 1; i++)
+	{
+		minval = i;
 
-    while (interval > 0)
-    {
-        for (i = interval; i < size; i++)
-        {
-            temp = array[i];
-            j = i;
+		for (j = i + 1; j < size; j++)
+		{
+			if (array[j] < array[minval])
+				minval = j;
+		}
 
-            while (j >= interval && array[j - interval] > temp)
-            {
-                array[j] = array[j - interval];
-                j -= interval;
-            }
-
-            array[j] = temp;
-        }
-
-        print_array(array, size);
-
-        interval = (interval - 1) / 3;
-    }
+		if (minval != i)
+		{
+			temp = array[i];
+			array[i] = array[minval];
+			array[minval] = temp;
+			print_array(array, size);
+		}
+	}
 }
